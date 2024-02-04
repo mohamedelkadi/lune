@@ -23,9 +23,10 @@ namespace :import do
           title: row[:title],
           description: row[:description],
           year: row[:year],
-          location: location,
           director: director
         )
+
+        movie.locations << location unless movie.locations.include?(location)
 
         row[:actors].split(',').each do |actor_name|
           actor = actor_hash[actor_name.strip] ||= Actor.find_or_create_by!(name: actor_name.strip)

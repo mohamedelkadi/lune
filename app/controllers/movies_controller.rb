@@ -13,6 +13,6 @@ class MoviesController < ApplicationController
                 .select('movies.*', 'AVG(reviews.stars) AS average_rating')
                 .group('movies.id')
                 .order(Arel.sql('average_rating DESC NULLS LAST'))
-                .includes(:reviews, :location, :director)
+                .includes(:reviews, :locations, :director)
   end
 end
