@@ -18,7 +18,7 @@
     <th>Year</th>
     <th>Location</th>
     <th>Director</th>
-    <th>Average Stars</th>
+    <th>Average Rating</th>
   </tr>
   </thead>
   <tbody>
@@ -29,6 +29,7 @@
       <td><%= movie.year %></td>
       <td><%= movie.location.name %></td>
       <td><%= movie.director.name %></td>
+      <td><%= movie.average_rating&.round(2) %></td>
     </tr>
   <% end %>
   </tbody>
