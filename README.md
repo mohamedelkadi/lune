@@ -1,24 +1,14 @@
-# README
+Import csvs by running 
+```
+bundle exec rake import:movies_and_reviews
+```
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+run rails server 
+```
+./bin/rails s
+```
 
-Things you may want to cover:
 
-* Ruby version
+result 
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+![image](https://github.com/mohamedelkadi/lune/assets/17525354/1b8337c4-aa65-4d00-9ff5-b8509dd2b2b0)
