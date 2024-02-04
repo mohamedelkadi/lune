@@ -2,13 +2,19 @@
 
 <h1>Movies</h1>
 
+
+
 <%= form_with(url: movies_path, method: :get, local: true) do |form| %>
   <div class="search-form">
     <%= form.label :search, "Search by actor" %>
     <%= form.text_field :search, value: params[:search] %>
     <%= form.submit "Search" %>
   </div>
+  <%= link_to 'Sort Ascending', movies_path(sort_order: 'asc', search: params[:search]) %>
+  <%= link_to 'Sort Descending', movies_path(sort_order: 'desc', search: params[:search]) %>
 <% end %>
+
+<br/>
 
 <table>
   <thead>

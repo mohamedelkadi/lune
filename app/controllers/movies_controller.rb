@@ -12,7 +12,12 @@ class MoviesController < ApplicationController
                 .left_joins(:reviews)
                 .select('movies.*', 'AVG(reviews.stars) AS average_rating')
                 .group('movies.id')
-                .order(Arel.sql('average_rating DESC NULLS LAST'))
+                .order(Arel.sql("average_rating #{sort_order} NULLS LAST"))
                 .includes(:reviews, :locations, :director)
+  end
+
+  private
+  def sort_order
+    @sort_order ||= %w[asc desc].include?(params[:sort_order]) ? params[:sort_order] : 'desc'
   end
 end
