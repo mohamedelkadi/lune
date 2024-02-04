@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
-  # root "articles#index"
+  resources :movies, only: [:index] # Creates the /movies route for the index action
+  root to: 'movies#index' # Sets the root path to the movies index action
 end

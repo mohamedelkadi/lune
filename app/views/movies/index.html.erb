@@ -1,0 +1,37 @@
+<!-- app/views/movies/index.html.erb -->
+
+<h1>Movies</h1>
+
+<%= form_with(url: movies_path, method: :get, local: true) do |form| %>
+  <div class="search-form">
+    <%= form.label :search, "Search by actor" %>
+    <%= form.text_field :search, value: params[:search] %>
+    <%= form.submit "Search" %>
+  </div>
+<% end %>
+
+<table>
+  <thead>
+  <tr>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Year</th>
+    <th>Location</th>
+    <th>Director</th>
+    <th>Average Stars</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @movies.each do |movie| %>
+    <tr>
+      <td><%= movie.title %></td>
+      <td><%= movie.description %></td>
+      <td><%= movie.year %></td>
+      <td><%= movie.location.name %></td>
+      <td><%= movie.director.name %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Reset Search', movies_path %>

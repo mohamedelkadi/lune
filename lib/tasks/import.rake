@@ -11,7 +11,7 @@ namespace :import do
     movie_hash = {}
 
     # Import Movies
-    SmarterCSV.process('lib/seeds/movies.csv', { key_mapping: { movie: :title, filming_location: :location }, remove_unmapped_keys: false }) do |chunk|
+    SmarterCSV.process('lib/seeds/movies.csv', { key_mapping: { movie: :title, filming_location: :location, actor: :actors }, remove_unmapped_keys: false }) do |chunk|
       chunk.each do |row|
         puts "Importing #{row}"
         row = row.with_indifferent_access
@@ -27,8 +27,10 @@ namespace :import do
           director: director
         )
 
-        actor = Actor.find_or_create_by!(name: row[:actor].strip)
-        MovieActor.find_or_create_by!(movie: movie, actor: actor)
+        row[:actors].split(',').each do |actor_name|
+          actor = actor_hash[actor_name.strip] ||= Actor.find_or_create_by!(name: actor_name.strip)
+          MovieActor.find_or_create_by!(movie: movie, actor: actor)
+        end
 
         movie_hash[row[:movie]] = movie
       end
